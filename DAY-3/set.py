@@ -1,0 +1,11 @@
+uber_cities={"chennai","hyd","bglr","delhi"}
+uber_cities.add("pondi")
+print(uber_cities)
+list_cities=list(uber_cities)
+print(type(list_cities))
+uber_cities2={"mumbai","kolkata","delhi","hyd"}
+print(uber_cities.union(uber_cities2))
+print(uber_cities.intersection(uber_cities2))
+print(uber_cities.difference(uber_cities2))
+uber_cities.add("pune")
+print(uber_cities)
