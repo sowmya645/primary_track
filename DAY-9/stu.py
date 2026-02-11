@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df=pd.read_csv("student.csv")
+df=pd.DataFrame(df)
+print(df)
+print(df.isnull())
+df["age"]=df["age"].fillna(df["age"].mean())
+df["marks"]=df["marks"].fillna(df["marks"].mean())
+print(df)
+df["city"] = df["city"].str.strip().str.title()
+print(df)
+print("average marks")
+print(df["marks"].mean())
+print("top scorer")
+top_scorer = df.loc[df["marks"].idxmax()]
+print(top_scorer)
+print("below 70")
+print(df[df["marks"]<70])
+plt.bar(df["name"],df["marks"])
+plt.show()
