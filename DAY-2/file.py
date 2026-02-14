@@ -7,7 +7,7 @@ def writef():
         with open("bill.txt","a"):
             pass
     t=datetime.date.today()
-    new =rf"C:\Users\91906\OneDrive\Desktop\bill.txt"
+   
     with open(path,"a") as f:
         f.write(f"time is {t} sow")
 import schedule 
