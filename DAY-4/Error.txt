@@ -1,0 +1,4 @@
+2026-01-30 10:15:49 ERROR 401 Invalid credentials from [172.16.4.55]
+2026-01-30 10:16:05 ERROR 500 File upload failed from [203.0.113.88]
+2026-01-30 10:16:41 ERROR 403 Access denied to admin panel from [192.168.0.99]
+2026-01-30 10:17:02 ERROR 502 Payment service unavailable from [203.0.113.19]
