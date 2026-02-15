@@ -1,0 +1,161 @@
+
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+<style>
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* FILTER BAR */
+.filter-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 200px;
+}
+
+.filter-form button {
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.filter-form button:hover {
+    background: #333;
+}
+
+/* PRODUCT GRID */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* IMAGE ZOOM EFFECT */
+.card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.08);
+}
+
+/* BODY */
+.card-body {
+    padding: 15px;
+}
+
+.card-body h5 {
+    margin: 0 0 8px;
+    font-weight: 500;
+}
+
+.card-body p {
+    margin: 0 0 12px;
+    font-weight: 600;
+    color: #ff3f6c;
+}
+
+/* BUTTON */
+.card-body form button {
+    width: 100%;
+    padding: 10px;
+    background: #ff3f6c;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-body form button:hover {
+    background: black;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    background: red;
+    margin-top: 10px;
+}
+
+/* ADD PRODUCT */
+.add-product {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 20px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.add-product:hover {
+    background: #ff3f6c;
+}
+
+</style>
+
+<h2>Discover Our Collection</h2>
+
+<form method="GET" class="filter-form">
+    <input name="search" placeholder="Search products...">
+    <input name="price" placeholder="Max price">
+    <button type="submit">Apply</button>
+</form>
+
+<div class="products">
+    {% for p in products %}
+    <div class="card">
+        <img src="{{ url_for('static', filename='uploads/' + p.image) }}">
+        <div class="card-body">
+            <h5>{{ p.name }}</h5>
+            <p>₹{{ p.price }}</p>
+
+            <form action="{{ url_for('add_to_cart', product_id=p.id) }}" method="POST">
+                <button type="submit">Add to Cart</button>
+            </form>
+
+            {% if current_user.is_admin %}
+            <form action="{{ url_for('delete_product', product_id=p.id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                <button type="submit" class="delete-btn">Delete Product</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+        <p>No products found.</p>
+    {% endfor %}
+</div>
+
+<a href="{{ url_for('add_product') }}" class="add-product">Add New Product</a>
+
+{% endblock %}

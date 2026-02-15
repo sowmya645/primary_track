@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            transition: 0.3s;
+        }
+
+        /* DARK MODE */
+        body.dark-mode {
+            background: #121212;
+            color: white;
+        }
+
+        body.dark-mode .card {
+            background: #1e1e1e;
+            color: white;
+        }
+
+        body.dark-mode .navbar {
+            background: #000;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: white;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .brand span {
+            color: #ff3f6c;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-right a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 14px;
+        }
+
+        .dark-btn {
+            cursor: pointer;
+            padding: 8px 14px;
+            border: 1px solid #ccc;
+            background: none;
+        }
+
+        .container {
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="brand">VELORA<span>STYLE</span></div>
+
+    <div class="nav-right">
+        <a href="/">Home</a>
+        <a href="#">Cart</a>
+        <a href="#">Orders</a>
+        <button class="dark-btn" onclick="toggleDarkMode()">🌙</button>
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode",
+        document.body.classList.contains("dark-mode"));
+}
+
+window.onload = function() {
+    if(localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+}
+</script>
+
+</body>
+</html>

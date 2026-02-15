@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmed{% endblock %}
+
+{% block content %}
+
+<style>
+
+.success-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+    text-align: center;
+}
+
+.success-card {
+    background: white;
+    padding: 60px 80px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    animation: pop 0.6s ease;
+    max-width: 500px;
+}
+
+body.dark-mode .success-card {
+    background: #1e1e1e;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-icon {
+    font-size: 60px;
+    color: #ff3f6c;
+    margin-bottom: 20px;
+}
+
+.success-card h2 {
+    margin-bottom: 15px;
+}
+
+.success-card p {
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.success-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #ff3f6c;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin: 8px;
+}
+
+.success-btn:hover {
+    background: black;
+}
+
+.order-number {
+    font-size: 14px;
+    margin-top: 15px;
+    opacity: 0.6;
+}
+
+.confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #ff3f6c 2px, transparent 2px),
+                      radial-gradient(circle, #000 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: move 5s linear infinite;
+    opacity: 0.05;
+}
+
+@keyframes move {
+    from { background-position: 0 0; }
+    to { background-position: 0 200px; }
+}
+
+</style>
+
+<div class="confetti"></div>
+
+<div class="success-wrapper">
+    <div class="success-card">
+        <div class="success-icon">🎉</div>
+
+        <h2>Order Placed Successfully!</h2>
+
+        <p>Thank you for shopping with <strong>VELORA STYLE</strong>.  
+        Your fashion upgrade is on its way 💖</p>
+
+        <a href="/" class="success-btn">Continue Shopping</a>
+        <a href="#" class="success-btn">View Orders</a>
+
+        <div class="order-number">
+            Order Confirmation Sent to Your Email 📧
+        </div>
+    </div>
+</div>
+
+{% endblock %}

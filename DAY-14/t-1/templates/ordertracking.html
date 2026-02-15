@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Order #{{ order.id }}</h3>
+
+<ul class="list-group">
+    <li class="list-group-item {% if order.status == 'Order Placed' %}active{% endif %}">
+        Order Placed
+    </li>
+    <li class="list-group-item {% if order.status == 'Packed' %}active{% endif %}">
+        Packed
+    </li>
+    <li class="list-group-item {% if order.status == 'Shipped' %}active{% endif %}">
+        Shipped
+    </li>
+    <li class="list-group-item {% if order.status == 'Out for Delivery' %}active{% endif %}">
+        Out for Delivery
+    </li>
+    <li class="list-group-item {% if order.status == 'Delivered' %}active{% endif %}">
+        Delivered
+    </li>
+</ul>
+
+{% endblock %}

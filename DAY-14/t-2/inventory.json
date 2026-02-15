@@ -1,0 +1,16 @@
+[
+    {
+        "type": "Electronics",
+        "name": "laptop",
+        "price": 200000.0,
+        "stock": 4,
+        "brand": "lenovo"
+    },
+    {
+        "type": "Electronics",
+        "name": "headset",
+        "price": 300.0,
+        "stock": 4,
+        "brand": "jabra"
+    }
+]
